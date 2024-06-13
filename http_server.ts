@@ -1,5 +1,9 @@
 import { Rpc } from "./rpc.ts";
 
+/**
+ * httpServerHandler is an HTTP handler so a server can be called by an
+ * HttpRpcClient.
+ */
 export function httpServerHandler(
   // deno-lint-ignore no-explicit-any
   procedures: Record<string, (...args: any[]) => any>,

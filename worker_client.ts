@@ -15,7 +15,7 @@ type ResponseHandler<T> = (_: RpcResult<T>) => void;
 let globalMsgId = 0;
 
 /**
- * WebWorkerFront is the front-end of {@link WebWorker} based {@link RpcClient}.
+ * WorkerRpcClient is a {@link WebWorker} based {@link RpcClient}.
  */
 export class WorkerRpcClient extends Worker implements RpcClient {
   // deno-lint-ignore no-explicit-any

@@ -3,8 +3,8 @@ import { Rpc } from "./rpc.ts";
 declare const self: Worker;
 
 /**
- * workerProcedureHandler is a wrapper around self.onmessage and self.postMessage
- * so a worker script can be used by WebWorker in WorkerPool.
+ * workerMessageHandler is a wrapper around self.onmessage and self.postMessage
+ * so a worker script can be used for Rpc by a {@link WorkerRpcClient}.
  */
 export function workerMessageHandler(
   // deno-lint-ignore no-explicit-any

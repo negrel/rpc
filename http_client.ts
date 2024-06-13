@@ -2,6 +2,9 @@ import { defaultRpcOptions, RpcClient, RpcOptions } from "./rpc.ts";
 
 type RpcResult<R> = { result: R } | { error: string };
 
+/**
+ * HttpRpcClient is an HTTP based {@link RpcClient}
+ */
 export class HttpRpcClient implements RpcClient {
   private readonly input: string | URL | Request;
   private readonly init?: RequestInit;
