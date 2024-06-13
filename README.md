@@ -10,7 +10,7 @@ based implementations.
 
 In `main.js`:
 
-```
+```js
 import { WorkerRpcClient } from "jsr:@negrel/rpc";
 
 // Create a worker based RpcClient.
@@ -33,7 +33,7 @@ client.terminate();
 
 In `worker_script.js`:
 
-```
+```js
 import { workerMessageHandler } from "jsr:@negrel/rpc";
 
 self.onmessage = workerMessageHandler({
@@ -48,7 +48,7 @@ self.onmessage = workerMessageHandler({
 
 In `main.js`:
 
-```
+```js
 import { HttpRpcClient } from "jsr:@negrel/rpc";
 
 // Create a worker based RpcClient.
@@ -65,7 +65,7 @@ console.log(result);
 
 In `server.js`:
 
-```
+```js
 import { httpServerHandler } from "jsr:@negrel/rpc";
 
 Deno.serve(httpServerHandler({
