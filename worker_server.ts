@@ -6,7 +6,7 @@ declare const self: Worker;
  * workerProcedureHandler is a wrapper around self.onmessage and self.postMessage
  * so a worker script can be used by WebWorker in WorkerPool.
  */
-export function workerProcedureHandler(
+export function workerMessageHandler(
   // deno-lint-ignore no-explicit-any
   procedures: Record<string, (...args: any[]) => any>,
   // deno-lint-ignore no-explicit-any
@@ -16,18 +16,6 @@ export function workerProcedureHandler(
     try {
       const procedure = procedures[event.data.name];
       if (typeof procedure !== "function") {
-        // WorkerScript may not implement setupWorker.
-        if (event.data.name == "setupWorker") {
-          self.postMessage(
-            {
-              id: event.data.id,
-              result: undefined,
-            },
-            [],
-          );
-          return;
-        }
-
         throw new Error(`procedure "${event.data.name}" doesn't exist`);
       }
 

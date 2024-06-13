@@ -1,3 +1,3 @@
 export * from "./rpc.ts";
-export * from "./web_worker_back.ts";
-export * from "./web_worker_front.ts";
+export * from "./worker_client.ts";
+export * from "./worker_server.ts";

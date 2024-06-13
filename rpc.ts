@@ -22,10 +22,10 @@ export const defaultRpcOptions: RpcOptions = {
 };
 
 /**
- * RpcWorker define interface common to all workers supporting Remote Procedure
+ * RpcClient define interface common to all RPC client supporting Remote Procedure
  * Call (RPC).
  */
-export interface RpcWorker {
+export interface RpcClient {
   remoteProcedureCall<A, R>(
     _: { name: string; args: A },
     options?: Partial<RpcOptions>,

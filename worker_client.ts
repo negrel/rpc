@@ -1,4 +1,4 @@
-import { defaultRpcOptions, RpcOptions, RpcWorker } from "./rpc.ts";
+import { defaultRpcOptions, RpcClient, RpcOptions } from "./rpc.ts";
 
 type RpcResult<R> =
   | {
@@ -15,9 +15,9 @@ type ResponseHandler<T> = (_: RpcResult<T>) => void;
 let globalMsgId = 0;
 
 /**
- * WebWorkerFront is the front-end of {@link WebWorker} based {@link RpcWorker}.
+ * WebWorkerFront is the front-end of {@link WebWorker} based {@link RpcClient}.
  */
-export class WebWorkerFront extends Worker implements RpcWorker {
+export class WorkerRpcClient extends Worker implements RpcClient {
   // deno-lint-ignore no-explicit-any
   private readonly responseHandlers = new Map<number, ResponseHandler<any>>();
 
@@ -71,6 +71,7 @@ export class WebWorkerFront extends Worker implements RpcWorker {
 
     responseHandler(event.data);
   }
+
   // deno-lint-ignore no-explicit-any
   private addResponseHandler(id: number, handler: ResponseHandler<any>): void {
     this.responseHandlers.set(id, handler);

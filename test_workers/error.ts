@@ -1,8 +1,8 @@
-import { workerProcedureHandler } from "../web_worker_back.ts";
+import { workerMessageHandler } from "../worker_server.ts";
 
 declare const self: Worker;
 
-self.onmessage = workerProcedureHandler(
+self.onmessage = workerMessageHandler(
   {
     error() {
       throw new Error("runtime error from worker");

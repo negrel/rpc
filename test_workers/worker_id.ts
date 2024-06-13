@@ -1,10 +1,10 @@
-import { workerProcedureHandler } from "../web_worker_back.ts";
+import { workerMessageHandler } from "../worker_server.ts";
 
 declare const self: Worker;
 
 let workerId: number | null = null;
 
-self.onmessage = workerProcedureHandler(
+self.onmessage = workerMessageHandler(
   {
     setupWorker(wId: number) {
       workerId = wId;
