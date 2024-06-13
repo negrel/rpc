@@ -1,0 +1,17 @@
+{
+  "name": "@negrel/rpc",
+  "version": "0.1.0",
+  "exports": "./mod.ts",
+  "compilerOptions": {
+    "allowJs": false,
+    "strict": true
+  },
+  "lint": {
+    "rules": {
+      "tags": [
+        "recommended"
+      ]
+    }
+  },
+  "imports": {}
+}
