@@ -1,7 +1,80 @@
-# `rpc` - A lightweight, type-safe RPC facade for TypeScript.
+# `rpc` - A lightweight, type-safe RPC facade and implementation for TypeScript.
 
-A lightweight, type-safe RPC facade for typescript and an implementation for
-[WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Worker).
+A lightweight, type-safe RPC facade for typescript and a
+[WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Worker) and HTTP
+based implementations.
+
+## Usage
+
+### WebWorker
+
+In `main.js`:
+
+```
+import { WorkerRpcClient } from "jsr:@negrel/rpc";
+
+// Create a worker based RpcClient.
+const client = new WorkerRpcClient(
+  new URL("./worker_script.js", import.meta.url),
+  { type: "module" },
+);
+
+// Remote Procedure Call.
+const result = await client.remoteProcedureCall({
+  name: "doWork",
+  args: { i: Math.random() },
+});
+
+console.log(result);
+
+// Stop worker.
+client.terminate();
+```
+
+In `worker_script.js`:
+
+```
+import { workerMessageHandler } from "jsr:@negrel/rpc";
+
+self.onmessage = workerMessageHandler({
+  doWork({ i }) {
+    console.log("doWork", i);
+    return i * 2;
+  },
+});
+```
+
+### HTTP
+
+In `main.js`:
+
+```
+import { HttpRpcClient } from "jsr:@negrel/rpc";
+
+// Create a worker based RpcClient.
+const client = new HttpRpcClient("http://localhost:8000");
+
+// Remote Procedure Call.
+const result = await client.remoteProcedureCall({
+  name: "doWork",
+  args: { i: Math.random() },
+});
+
+console.log(result);
+```
+
+In `server.js`:
+
+```
+import { httpServerHandler } from "jsr:@negrel/rpc";
+
+Deno.serve(httpServerHandler({
+  doWork({ i }) {
+    console.log("doWork", i);
+    return i * 2;
+  },
+}));
+```
 
 ## Contributing
 
