@@ -1,4 +1,7 @@
-# `rpc` - A lightweight, type-safe Rpc facade for TypeScript.
+# `rpc` - A lightweight, type-safe RPC facade for TypeScript.
+
+A lightweight, type-safe RPC facade for typescript and an implementation for
+[WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Worker).
 
 ## Contributing
 
