@@ -1,0 +1,35 @@
+name: Build
+
+on:
+  push:
+    branches: ['*']
+  pull_request:
+
+permissions: {}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v21
+
+      - name: Lint
+        run: nix develop --command make lint
+
+      - name: Check Format
+        run: nix develop --command make fmt-check
+
+      - name: Run Tests
+        run: nix develop --command make test
+
+      - name: Publish to JSR
+        run: nix develop --command deno publish
